@@ -7,7 +7,7 @@ export const Fieldset = styled.fieldset`
   border: 0;
   width: 100%;
   label {
-    color: var(--color-neutral-white);
+    color: var(--color-neutral-black);
     font-size: 22px;
     font-weight: 700;
     line-height: 27px;
@@ -15,12 +15,12 @@ export const Fieldset = styled.fieldset`
   input {
     width: 100%;
     height: 60px;
-    background-color: var(--color-blue-5);
+    background-color: var(--color-blue-6);
     color: var(--color-blue-1);
     font-size: 22px;
     font-weight: 400;
     line-height: 27px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
 
     padding: 20px 15px;
     border-radius: 4px;

@@ -16,6 +16,14 @@ export interface iUserContext {
     setUserProfile: React.Dispatch<React.SetStateAction<iUserProfile>>
 }
 
+export interface iContact {
+    id: string,
+    name: string,
+    emails: string[],
+    telefones: string[],
+    createdAt: string
+}
+
 export interface iUserProfile {
     token?: string;
     user: {
@@ -24,9 +32,12 @@ export interface iUserProfile {
         email: string,
         telefones: string[],
         createdAt: string,
-        updatedAt: string
+        updatedAt: string,
+        contacts: iContact[]
     }
 }
+
+
 
 export interface iLoginSubmit {
     email: string;
@@ -35,12 +46,13 @@ export interface iLoginSubmit {
 
 export interface iDefaultErrorResponse {
     message: string;
-  }
-  
+}
+
 
 
 
 
 export interface iServiceContext {
-    support: string
+    testState: boolean
+    setTestState: React.Dispatch<React.SetStateAction<boolean>>
 }

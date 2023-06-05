@@ -51,18 +51,23 @@ export const GlobalStyle = createGlobalStyle`
 
 }
 
-*::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
-}
+/* width of the entire scrollbar */
+/* *::-webkit-scrollbar {
+  width: 12px;            
+} */
 
-*::-webkit-scrollbar-track {
-  background: var(--color-blue-5);        /* color of the tracking area */
-}
+/* color of the tracking area */
+/* *::-webkit-scrollbar-track {
+  background: var(--color-blue-5);        
+} */
 
+/* color of the scroll thumb */
+/* roundness of the scroll thumb */
+/* creates padding around scroll thumb */
+/* border-radius: 20px;
 *::-webkit-scrollbar-thumb {
-  background-color: var(--color-blue-2);    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid var(--color-blue-5);  /* creates padding around scroll thumb */
-}
+  background-color: var(--color-blue-2);   
+  border: 3px solid var(--color-blue-5);  
+} */
 
 `;

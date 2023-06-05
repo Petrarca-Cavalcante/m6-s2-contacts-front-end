@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledLogin = styled.main`
+export const StyledRegister = styled.main`
   min-height: 100vh;
   width: 100vw;
   display: flex;
@@ -39,7 +39,7 @@ export const StyledLogin = styled.main`
   }
 
   .form-wrapper {
-    padding: 1.8em;
+    padding: 2em;
     background-color: var(--color-gray-11);
     border-radius: 1em;
     display: flex;
@@ -47,8 +47,7 @@ export const StyledLogin = styled.main`
     align-items: center;
     box-shadow: 1px 5px 10px var(--box-shadow-color);
   }
-    .register-message {
+  .register-message {
     margin-top: 15px;
   } 
-  
 `;
