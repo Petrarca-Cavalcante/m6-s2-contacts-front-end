@@ -7,16 +7,17 @@ import { SubmitHandler } from "react-hook-form"
 import { iLoginForm } from "../pages/login"
 import { iNewContact } from "../components/modal/addContact/type"
 import { ServiceContext } from "./ServiceContext"
+import { iUpdateContactFormat } from "../components/modal/editContact/type"
 
 export const UserContext = createContext({} as iUserContext)
 
 export const UserProvider = ({ children }: iPropsUserProvider) => {
-  const { setAddContactModal, setViewContactModal } = useContext(ServiceContext)
+  const { setAddContactModal, setViewContactModal, setEditContactModal } = useContext(ServiceContext)
 
   const [viewContact, setViewContact] = useState({} as iContact)
   const [userProfile, setUserProfile] = useState({} as iUserProfile)
   const [loadingButton, setLoadingButton] = useState(false)
-  const [ contacts, setContacts ] = useState([] as iContact[])
+  const [contacts, setContacts] = useState([] as iContact[])
 
   const navigate = useNavigate()
   const onSubmitLogin: SubmitHandler<iLoginForm> = async (data) => {
@@ -42,6 +43,7 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
     try {
       const response = await api.get("/contacts", { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
       setContacts(response.data)
+      console.log(response.data)
     } catch (error) {
       toast.error("Houve um erro ao carregar seus contatos!")
     }
@@ -64,6 +66,18 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
     }
   }
 
+  const updateContact = async (data: iUpdateContactFormat, id: string) => {
+    try {
+      await api.patch(`/contacts/${id}`, data, { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
+      requestContacts()
+      setViewContactModal(false)
+      setEditContactModal(false)
+      toast.success(`O contato ${data.name} foi atualizado!`)
+    } catch (error) {
+      toast.error(`Falha ao atualizar o contato ${data.name}`)
+    }
+  }
+
   const deleteContact = async (id: string, name: string) => {
     try {
       await api.delete(`/contacts/${id}`, { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
@@ -74,6 +88,7 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
       toast.error("Ops! Algo deu errado ao deletar o seu contato")
     }
   }
+
 
   const requestUser = async () => {
     try {
@@ -109,7 +124,8 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
         deleteContact,
         requestContacts,
         contacts,
-        setContacts
+        setContacts,
+        updateContact
       }}
     >
       {children}

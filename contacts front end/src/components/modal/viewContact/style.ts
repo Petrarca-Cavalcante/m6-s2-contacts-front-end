@@ -12,7 +12,7 @@ background-color: var(--color-black-transparent);
 
 .modal-card {
     z-index: 1;
-    margin: 0 15px;
+    width: 300px;
     border-radius: .8em;
     display: flex;
     flex-direction: column;

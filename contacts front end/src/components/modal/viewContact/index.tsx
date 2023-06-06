@@ -7,7 +7,7 @@ import { GoPencil } from "react-icons/go"
 import { SlTrash } from "react-icons/sl"
 
 export const ViewContactModal = () => {
-    const { viewContactModal, setViewContactModal } = useContext(ServiceContext)
+    const { viewContactModal, setViewContactModal, setEditContactModal, setContactToUpdate } = useContext(ServiceContext)
     const { viewContact, deleteContact } = useContext(UserContext)
     const { id, name, emails, telefones, createdAt } = viewContact
 
@@ -37,7 +37,7 @@ export const ViewContactModal = () => {
                                 <p>Adicionado em: {dataFormatada}</p>
                             </div>
                             <div className="modal-edit-container">
-                                <GoPencil className="edit-btn btn" />
+                                <GoPencil onClick={ () => {setEditContactModal(true); setContactToUpdate(viewContact)}} className="edit-btn btn" />
                             </div>
                         </div>
                         <div className="modal-emails">

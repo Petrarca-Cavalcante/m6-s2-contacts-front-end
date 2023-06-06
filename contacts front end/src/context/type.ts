@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react"
 import { iNewContact } from "../components/modal/addContact/type"
+import { iUpdateContactFormat } from "../components/modal/editContact/type"
 
 export interface iPropsUserProvider {
     children: ReactNode
@@ -23,6 +24,7 @@ export interface iUserContext {
     requestContacts: () => void
     contacts: iContact[]
     setContacts: React.Dispatch<React.SetStateAction<iContact[]>>
+    updateContact: (data: iUpdateContactFormat, id:string) => void
 }
 
 export interface iContact {
@@ -66,6 +68,10 @@ export interface iServiceContext {
     setAddContactModal: React.Dispatch<React.SetStateAction<boolean>>
     viewContactModal: boolean
     setViewContactModal: React.Dispatch<React.SetStateAction<boolean>>
+    editContactModal: boolean
+    setEditContactModal: React.Dispatch<React.SetStateAction<boolean>>
+    contactToUpdate: iContact
+    setContactToUpdate: React.Dispatch<React.SetStateAction<iContact>>
 }
 
 

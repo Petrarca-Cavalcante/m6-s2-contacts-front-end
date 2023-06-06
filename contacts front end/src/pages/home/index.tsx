@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 import { ViewContactModal } from "../../components/modal/viewContact"
 import { IoPersonAddOutline } from "react-icons/io5"
 import { AiOutlineEye } from "react-icons/ai"
-
+import { EditContactModal } from "../../components/modal/editContact"
 
 export const Home = () => {
   const { userProfile, requestUser, setViewContact, requestContacts, contacts } = useContext(UserContext)
@@ -19,6 +19,7 @@ export const Home = () => {
     requestUser()
     requestContacts()
   }, [])
+
   const navigate = useNavigate()
 
   const logout = () => {
@@ -31,6 +32,7 @@ export const Home = () => {
     <StyledHome>
       <AddContactModal />
       <ViewContactModal />
+      <EditContactModal />
       {userProfile.user ? (
         <div className="user-card">
           <div className="user-container">
