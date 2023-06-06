@@ -21,6 +21,7 @@ export const StyledHome = styled.main`
     justify-content: center;
     width: 30px;
     height: 100%;
+    padding-top: 5px;
   }
   .user-container {
     display: flex;
@@ -34,11 +35,12 @@ export const StyledHome = styled.main`
     justify-content: space-between;
     padding: 10px;
     padding-left: 60px;
-    border: 2px solid red;
     height: 100px;
     width: 250px;
     margin-top: 10vh;
     margin-bottom: 15px;
+    background-color: var(--color-blue-5);
+    border-radius: .8em;
   }
 
 .add-contact-session {
@@ -53,47 +55,42 @@ export const StyledHome = styled.main`
 }
 
 .add-contact-btn {
-  height: 35px;
   width: 35px;
-  border-radius: 2em;
-  background-color: #fff;
-  border: 1px solid var(--color-blue-5);
-  font-weight: 700;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-right: 20px;
 }
 
 .add-contact-session p {
   flex: 1;
   text-align: center; 
   margin: 0; 
-  font-weight: 600;
+  font-weight: 500;
 }
 
   ul {
+    max-height: 355px;
+    width: 250px;
+    padding: 20px 10px 10px 10px ;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
     justify-content: space-between;
-    width: 250px;
-    padding: 20px 0 0 0 ;
     background-color: var(--color-blue-5);
     border-radius: 1em;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    overflow: scroll;
   }
   li {
-    margin-bottom: 20px;
-    height: 20px;
+    width: 90%;
+    min-height: 37px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 90%;
-    height: 35px;
-    background-color: var(--color-neutral-white);
+    margin-bottom: 15px;
     border-radius: .8em;
+    background-color: var(--color-neutral-white);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `

@@ -17,6 +17,8 @@ export interface iUserContext {
     userProfile: iUserProfile
     setUserProfile: React.Dispatch<React.SetStateAction<iUserProfile>>
     requestUser: () => void
+    viewContact: iContact
+    setViewContact: React.Dispatch<React.SetStateAction<iContact>>
 }
 
 export interface iContact {
@@ -58,6 +60,8 @@ export interface iDefaultErrorResponse {
 export interface iServiceContext {
     addContactModal: boolean
     setAddContactModal: React.Dispatch<React.SetStateAction<boolean>>
+    viewContactModal: boolean
+    setViewContactModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 

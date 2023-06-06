@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react"
 import { api } from "../services/api"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import { iPropsUserProvider, iUserContext, iUserProfile, iDefaultErrorResponse, iNewContactrequest } from "./type"
+import { iPropsUserProvider, iUserContext, iUserProfile, iNewContactrequest, iContact } from "./type"
 import { SubmitHandler } from "react-hook-form"
 import { iLoginForm } from "../pages/login"
 import { iNewContact } from "../components/modal/addContact/type"
@@ -13,7 +13,7 @@ export const UserContext = createContext({} as iUserContext)
 export const UserProvider = ({ children }: iPropsUserProvider) => {
   const { setAddContactModal } = useContext(ServiceContext)
 
-
+  const [viewContact, setViewContact ] = useState({} as iContact)
   const [userProfile, setUserProfile] = useState({} as iUserProfile)
   const [loadingButton, setLoadingButton] = useState(false)
 
@@ -22,7 +22,6 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
     try {
       setLoadingButton(true)
       const response = await api.post("/login", data)
-      console.log(response)
       toast.success("Login realizado com sucesso!")
       localStorage.setItem("@contacts:token", response.data.token)
       localStorage.setItem(
@@ -47,9 +46,8 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
     }
     try {
       const createContatctResponse = await api.post("/contacts", newContact, { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
-      console.log(newContact, createContatctResponse.data)
       setAddContactModal(false)
-      toast.success(`O novo contato ${newContact.name} foi salvo!`)
+      toast.success(`O novo contato ${createContatctResponse.data.name} foi salvo!`)
     } catch (error) {
 
       toast.error("Ops! Algo deu errado ao adicionar um novo contato")
@@ -82,7 +80,9 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
         userProfile,
         setUserProfile,
         onSubmitNewContact,
-        requestUser
+        requestUser,
+        viewContact,
+        setViewContact
       }}
     >
       {children}

@@ -11,7 +11,7 @@ import { UserContext } from "../../../context/UserContext"
 
 
 export const AddContactModal = () => {
-    const { addContactModal, setAddContactModal } = useContext(ServiceContext)
+    const { addContactModal, setAddContactModal, viewContactModal, setViewContactModal } = useContext(ServiceContext)
     const { onSubmitNewContact } = useContext(UserContext)
 
     const {
