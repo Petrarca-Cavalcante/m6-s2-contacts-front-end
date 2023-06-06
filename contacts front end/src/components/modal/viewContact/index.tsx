@@ -1,14 +1,14 @@
 import { useContext } from "react"
 import { ServiceContext } from "../../../context/ServiceContext"
 import { StyledViewContact } from "./style"
-import { GrClose } from "react-icons/gr"
 import { UserContext } from "../../../context/UserContext"
-
-
+import { GrClose } from "react-icons/gr"
+import { GoPencil } from "react-icons/go"
+import { SlTrash } from "react-icons/sl"
 
 export const ViewContactModal = () => {
     const { viewContactModal, setViewContactModal } = useContext(ServiceContext)
-    const { viewContact } = useContext(UserContext)
+    const { viewContact, deleteContact } = useContext(UserContext)
     const { id, name, emails, telefones, createdAt } = viewContact
 
     const date = new Date(createdAt);
@@ -29,28 +29,36 @@ export const ViewContactModal = () => {
                 <StyledViewContact onClick={() => setViewContactModal(false)}>
                     <section className="modal-card" onClick={handleModalClick}>
                         <div className="modal-header">
-                            <div className="modal-close-container"><GrClose onClick={() => { setViewContactModal(false)}} className="close-btn" /></div>
+                            <div className="modal-close-container">
+                                <GrClose onClick={() => { setViewContactModal(false) }} className="close-btn btn" />
+                            </div>
                             <div className="modal-user-container">
                                 <h2>{name}</h2>
                                 <p>Adicionado em: {dataFormatada}</p>
                             </div>
+                            <div className="modal-edit-container">
+                                <GoPencil className="edit-btn btn" />
+                            </div>
                         </div>
                         <div className="modal-emails">
-                            <h2>Emails</h2>
+                            <h2>Email</h2>
                             <ul>
-                                {emails.map((email) => (
-                                    <li key={email}>{email}</li>
+                                {emails.map((email, index) => (
+                                    <li key={index}>{email}</li>
                                 ))}
                             </ul>
                         </div>
                         <div className="modal-telefones">
-                            <h2>Números</h2>
+                            <div>
+                                <h2>Número</h2>
+                            </div>
                             <ul>
-                                {telefones.map((telefone) => (
-                                    <li key={telefone}>{telefone}</li>
+                                {telefones.map((telefone, index) => (
+                                    <li key={index}>{telefone}</li>
                                 ))}
                             </ul>
                         </div>
+                        <SlTrash className="delete-btn btn" onClick={() => deleteContact(id, name)}/>
                     </section>
                 </StyledViewContact>
             )}

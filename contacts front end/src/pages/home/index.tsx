@@ -9,15 +9,16 @@ import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 import { ViewContactModal } from "../../components/modal/viewContact"
 import { IoPersonAddOutline } from "react-icons/io5"
+import { AiOutlineEye } from "react-icons/ai"
 
 
 export const Home = () => {
-  const { userProfile, requestUser, setViewContact } = useContext(UserContext)
+  const { userProfile, requestUser, setViewContact, requestContacts, contacts } = useContext(UserContext)
   const { setAddContactModal, setViewContactModal } = useContext(ServiceContext)
   useEffect(() => {
     requestUser()
+    requestContacts()
   }, [])
-
   const navigate = useNavigate()
 
   const logout = () => {
@@ -47,8 +48,8 @@ export const Home = () => {
         <div className="contact-container">
           <div className="add-contact-session"><p>Contatos</p><IoPersonAddOutline onClick={() => setAddContactModal(true)} className="add-contact-btn" /></div>
           <ul>
-            {userProfile.user.contacts.map((contact) => (
-              <li key={contact.id} onClick={() => {setViewContact(contact); setViewContactModal(true)}}>{contact.name}</li>
+            {contacts.map((contact) => (
+              <li key={contact.id} onClick={() => { setViewContact(contact); setViewContactModal(true) }}> <p>{contact.name}</p> <AiOutlineEye /></li>
             ))}
           </ul>
         </div>

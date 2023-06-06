@@ -22,34 +22,55 @@ background-color: var(--color-black-transparent);
     background-color: var(--color-neutral-white);
 }
 .modal-header {
-    height: 50px;
+    height: 90px;
     display: flex;
     flex-direction: row-reverse;
-    padding-left: 35px;
     margin-bottom: 10px;
 }
 .modal-user-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     gap: 5px;
     margin-top: 5px;
 }
-.modal-close-container {
-
-}
-.close-btn {
+.modal-close-container, .modal-edit-container{
     width: 35px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 1px solid;
 }
 
-.modal-emails {
-    max-height: 200px;
-    overflow-y: scroll;
+
+.btn {
+    width: 35px;
+    height: 25px;
 }
-.modal-telefones {
+.delete-btn {
+    align-self: flex-end;
+}
+
+ul {
     max-height: 200px;
-    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+
+ul li {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+}
+
+
+.edit-contact {
+    width: 25px;
+    height: 25px;
 }
 `

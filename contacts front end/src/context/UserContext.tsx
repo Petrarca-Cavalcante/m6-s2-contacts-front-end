@@ -11,11 +11,12 @@ import { ServiceContext } from "./ServiceContext"
 export const UserContext = createContext({} as iUserContext)
 
 export const UserProvider = ({ children }: iPropsUserProvider) => {
-  const { setAddContactModal } = useContext(ServiceContext)
+  const { setAddContactModal, setViewContactModal } = useContext(ServiceContext)
 
-  const [viewContact, setViewContact ] = useState({} as iContact)
+  const [viewContact, setViewContact] = useState({} as iContact)
   const [userProfile, setUserProfile] = useState({} as iUserProfile)
   const [loadingButton, setLoadingButton] = useState(false)
+  const [ contacts, setContacts ] = useState([] as iContact[])
 
   const navigate = useNavigate()
   const onSubmitLogin: SubmitHandler<iLoginForm> = async (data) => {
@@ -31,10 +32,18 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
       setUserProfile(response.data.user)
       navigate("/home")
     } catch (error) {
-
       toast.error("Ops! Algo deu errado, faça o login novamente")
     } finally {
       setLoadingButton(false)
+    }
+  }
+
+  const requestContacts = async () => {
+    try {
+      const response = await api.get("/contacts", { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
+      setContacts(response.data)
+    } catch (error) {
+      toast.error("Houve um erro ao carregar seus contatos!")
     }
   }
 
@@ -49,8 +58,20 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
       setAddContactModal(false)
       toast.success(`O novo contato ${createContatctResponse.data.name} foi salvo!`)
     } catch (error) {
-
       toast.error("Ops! Algo deu errado ao adicionar um novo contato")
+    } finally {
+      requestContacts()
+    }
+  }
+
+  const deleteContact = async (id: string, name: string) => {
+    try {
+      await api.delete(`/contacts/${id}`, { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
+      requestContacts()
+      setViewContactModal(false)
+      toast.success(`O seu contato ${name} foi deletado`)
+    } catch (error) {
+      toast.error("Ops! Algo deu errado ao deletar o seu contato")
     }
   }
 
@@ -71,6 +92,8 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
     }
   }
 
+
+
   return (
     <UserContext.Provider
       value={{
@@ -82,7 +105,11 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
         onSubmitNewContact,
         requestUser,
         viewContact,
-        setViewContact
+        setViewContact,
+        deleteContact,
+        requestContacts,
+        contacts,
+        setContacts
       }}
     >
       {children}

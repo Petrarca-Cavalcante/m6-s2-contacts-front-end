@@ -19,6 +19,10 @@ export interface iUserContext {
     requestUser: () => void
     viewContact: iContact
     setViewContact: React.Dispatch<React.SetStateAction<iContact>>
+    deleteContact: (id: string, name: string) => void
+    requestContacts: () => void
+    contacts: iContact[]
+    setContacts: React.Dispatch<React.SetStateAction<iContact[]>>
 }
 
 export interface iContact {

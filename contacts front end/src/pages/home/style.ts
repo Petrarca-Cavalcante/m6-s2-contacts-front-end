@@ -77,20 +77,26 @@ export const StyledHome = styled.main`
     background-color: var(--color-blue-5);
     border-radius: 1em;
     margin-bottom: 20px;
-    overflow: scroll;
+    overflow-x: auto;
   }
   li {
     width: 90%;
     min-height: 37px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 10px 0 25px;
     margin-bottom: 15px;
     border-radius: .8em;
     background-color: var(--color-neutral-white);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  li p {
+    overflow: hidden;
+    max-width: 80px;
+    word-break: break-all;
   }
 `
