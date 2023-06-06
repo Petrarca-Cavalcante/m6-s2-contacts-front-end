@@ -49,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
   --color-negative: #ADB5BD;
   --color-negative-hover: #E60000;
 
+  --color-black-transparent: #00000095
 }
 
 /* width of the entire scrollbar */

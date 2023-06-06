@@ -4,12 +4,12 @@ import { iServiceContext, iPropsServiceProvider } from "./type";
 export const ServiceContext = createContext({} as iServiceContext);
 
 export const ServiceProvider = ({ children }: iPropsServiceProvider) => {
-    const [testState, setTestState] = useState<boolean>(true)
+    const [addContactModal, setAddContactModal] = useState<boolean>(Boolean)
     return (
         <ServiceContext.Provider
             value={{
-                testState,
-                setTestState
+                addContactModal,
+                setAddContactModal
             }}
         >
             {children}

@@ -33,7 +33,7 @@ export const Login = () => {
         <StyledLogin>
             <div className="form-wrapper">
                 <Title colorTitle="blue-1" type="Heading1">Login</Title>
-                <form action="submit" onSubmit={handleSubmit(onSubmitLogin)} noValidate>
+                <form onSubmit={handleSubmit(onSubmitLogin)} noValidate>
                     <Input
                         id="input-email"
                         labelName="Email"
@@ -65,10 +65,10 @@ export const Login = () => {
                     </Button>
                 </form>
                 <p className="register-message">Não possui conta?</p>
-                <LinkNavigation 
-                linkTo="/register"
-                style="icon"
-                name="Cadastrar-se"
+                <LinkNavigation
+                    linkTo="/register"
+                    style="icon"
+                    name="Cadastrar-se"
                 />
             </div>
         </StyledLogin>

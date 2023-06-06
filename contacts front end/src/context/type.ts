@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from "react"
+import { iNewContact } from "../components/modal/addContact/type"
 
 export interface iPropsUserProvider {
     children: ReactNode
@@ -9,11 +10,13 @@ export interface iPropsServiceProvider {
 }
 
 export interface iUserContext {
-    loadingButton: boolean;
+    loadingButton: boolean
     setLoadingButton: React.Dispatch<React.SetStateAction<boolean>>,
-    onSubmitLogin: (data: iLoginSubmit) => void;
-    userProfile: iUserProfile;
+    onSubmitLogin: (data: iLoginSubmit) => void
+    onSubmitNewContact: (data: iNewContact) => void
+    userProfile: iUserProfile
     setUserProfile: React.Dispatch<React.SetStateAction<iUserProfile>>
+    requestUser: () => void
 }
 
 export interface iContact {
@@ -25,7 +28,7 @@ export interface iContact {
 }
 
 export interface iUserProfile {
-    token?: string;
+    token?: string
     user: {
         id: string,
         name: string,
@@ -40,12 +43,12 @@ export interface iUserProfile {
 
 
 export interface iLoginSubmit {
-    email: string;
-    password: string;
+    email: string
+    password: string
 }
 
 export interface iDefaultErrorResponse {
-    message: string;
+    message: string
 }
 
 
@@ -53,6 +56,13 @@ export interface iDefaultErrorResponse {
 
 
 export interface iServiceContext {
-    testState: boolean
-    setTestState: React.Dispatch<React.SetStateAction<boolean>>
+    addContactModal: boolean
+    setAddContactModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+export interface iNewContactrequest {
+    name: string
+    telefones: string[]
+    emails: string[]
 }

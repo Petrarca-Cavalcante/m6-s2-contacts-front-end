@@ -7,20 +7,37 @@ export const StyledHome = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 8vh 10px 40px 10px;
   background-color: var(--color-neutral-white);
   color: var(--color-neutral-black);
   
+  #FiLogOut {
+    width: 35px;
+    height: 20px;
+  }
 
-  .user-card {
+  .logout-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 30px;
+    height: 100%;
+  }
+  .user-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
+  }
+  .user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px;
+    padding-left: 60px;
     border: 2px solid red;
     height: 100px;
     width: 250px;
+    margin-top: 10vh;
     margin-bottom: 15px;
   }
 
@@ -65,7 +82,7 @@ export const StyledHome = styled.main`
     padding: 20px 0 0 0 ;
     background-color: var(--color-blue-5);
     border-radius: 1em;
-  
+    margin-bottom: 40px;
   }
   li {
     margin-bottom: 20px;
