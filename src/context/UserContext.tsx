@@ -52,6 +52,8 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
       const response = await api.get("/contacts", { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
       setContacts(response.data)
     } catch (error) {
+      localStorage.clear()
+      navigate("/login")
       toast.error("Houve um erro ao carregar seus contatos!")
     }
   }
