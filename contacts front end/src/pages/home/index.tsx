@@ -34,7 +34,7 @@ export const Home = () => {
       <ViewContactModal />
       <EditContactModal />
       {userProfile.user ? (
-        <div className="user-card">
+        <div className="user-card home-card">
           <div className="user-container">
             <h2>{userProfile.user.name}</h2>
             <div>{userProfile.user.email}</div>
@@ -47,16 +47,16 @@ export const Home = () => {
         <RotatingLines width="40px" strokeColor="black" />
       )}
       {userProfile.user ? (
-        <div className="contact-container">
+        <div className="contact-container home-card">
           <div className="add-contact-session"><p>Contatos</p><IoPersonAddOutline onClick={() => setAddContactModal(true)} className="add-contact-btn" /></div>
-          <ul>
+          <ul className="home-card">
             {contacts.map((contact) => (
               <li key={contact.id} onClick={() => { setViewContact(contact); setViewContactModal(true) }}> <p>{contact.name}</p> <AiOutlineEye /></li>
             ))}
           </ul>
         </div>
       ) : (
-        <div><p>Não há contatos</p></div>
+        <div><p>Você não está logado</p></div>
       )}
     </StyledHome>
   )

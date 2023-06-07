@@ -8,28 +8,25 @@ import { iLoginForm } from "../pages/login"
 import { iNewContact } from "../components/modal/addContact/type"
 import { ServiceContext } from "./ServiceContext"
 import { iUpdateContactFormat } from "../components/modal/editContact/type"
+import { iRegister } from "../pages/register"
 
 export const UserContext = createContext({} as iUserContext)
-
 export const UserProvider = ({ children }: iPropsUserProvider) => {
-  const { setAddContactModal, setViewContactModal, setEditContactModal } = useContext(ServiceContext)
+  const navigate = useNavigate()
 
+
+  const { setAddContactModal, setViewContactModal, setEditContactModal } = useContext(ServiceContext)
   const [viewContact, setViewContact] = useState({} as iContact)
   const [userProfile, setUserProfile] = useState({} as iUserProfile)
   const [loadingButton, setLoadingButton] = useState(false)
   const [contacts, setContacts] = useState([] as iContact[])
 
-  const navigate = useNavigate()
   const onSubmitLogin: SubmitHandler<iLoginForm> = async (data) => {
     try {
       setLoadingButton(true)
       const response = await api.post("/login", data)
       toast.success("Login realizado com sucesso!")
       localStorage.setItem("@contacts:token", response.data.token)
-      localStorage.setItem(
-        "@contacts:userId",
-        JSON.stringify(response.data.user.id)
-      )
       setUserProfile(response.data.user)
       navigate("/home")
     } catch (error) {
@@ -39,11 +36,21 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
     }
   }
 
+  const createAccount = async (data: iRegister) => {
+    try {
+      const response = await api.post("/user", data)
+      toast.success(`Usuário ${response.data.name} criado com sucesso`)
+      navigate("/login")
+    } catch (error) {
+      
+      toast.error("Houve um erro ao registrar seu usuário!")
+    }
+  }
+
   const requestContacts = async () => {
     try {
       const response = await api.get("/contacts", { headers: { Authorization: `Bearer: ${localStorage.getItem("@contacts:token")}` } })
       setContacts(response.data)
-      console.log(response.data)
     } catch (error) {
       toast.error("Houve um erro ao carregar seus contatos!")
     }
@@ -115,6 +122,7 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
         loadingButton,
         setLoadingButton,
         onSubmitLogin,
+        createAccount,
         userProfile,
         setUserProfile,
         onSubmitNewContact,
@@ -125,7 +133,7 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
         requestContacts,
         contacts,
         setContacts,
-        updateContact
+        updateContact,
       }}
     >
       {children}

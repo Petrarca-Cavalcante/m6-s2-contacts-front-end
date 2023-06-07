@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 
 export const StyledAddContactModal = styled.main`
+z-index: 1;
 position: absolute;
 display: flex;
 flex-direction: column;
@@ -51,5 +52,9 @@ form {
         margin-top: 10px;
     }
 }
-
+@media(min-width: 600px){
+    .modal-card{
+        width: 400px;
+    }
+}
 `

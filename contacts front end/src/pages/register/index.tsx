@@ -17,10 +17,17 @@ export interface iRegisterForm {
     telefone: string,
 }
 
-export const Register = () => {
-    const { loadingButton, onSubmitLogin } = useContext(UserContext)
+export interface iRegister {
+    name: string,
+    password: string,
+    email: string,
+    telefones: string[]
+}
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+export const Register = () => {
+    const { loadingButton, createAccount} = useContext(UserContext)
+
+    const { register, handleSubmit, formState: { errors } } = useForm<iRegisterForm>({
         mode: "onChange",
         resolver: yupResolver(registerSchema),
         defaultValues: {
@@ -31,11 +38,21 @@ export const Register = () => {
         }
     })
 
+    const registerAjust = (data: iRegisterForm) => {
+        const registerData: iRegister = {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            telefones: [data.telefone]
+        }
+        createAccount(registerData)
+    }
+
     return (
         <StyledRegister>
             <div className="form-wrapper">
                 <Title colorTitle="blue-1" type="Heading1">Registro</Title>
-                <form action="submit" noValidate>
+                <form onSubmit={handleSubmit(registerAjust)} noValidate>
                     <Input
                         id="input-email"
                         labelName="Email"

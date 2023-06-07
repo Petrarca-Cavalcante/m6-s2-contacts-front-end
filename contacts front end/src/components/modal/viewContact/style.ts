@@ -23,7 +23,9 @@ background-color: var(--color-black-transparent);
 }
 .modal-header {
     height: 90px;
+    width: 90%;
     display: flex;
+    justify-content: space-between;
     flex-direction: row-reverse;
     margin-bottom: 10px;
 }
@@ -54,23 +56,36 @@ background-color: var(--color-black-transparent);
     align-self: flex-end;
 }
 
-ul {
+.modal-emails, .modal-telefones {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    ul {
+    width: 100%;
     max-height: 200px;
     overflow-x: auto;
-}
+    }   
 
 
-ul li {
+    ul li {
     width: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 5px 10px;
+    }
 }
-
 
 .edit-contact {
     width: 25px;
     height: 25px;
+}
+
+@media(min-width: 600px){
+    .modal-card {
+        width: 400px;
+    }
 }
 `

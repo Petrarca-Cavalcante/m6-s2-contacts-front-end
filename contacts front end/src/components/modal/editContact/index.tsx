@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { MouseEvent, useContext } from "react"
 import { UserContext } from "../../../context/UserContext"
 import { ServiceContext } from "../../../context/ServiceContext"
 import { StyledEditContactModal } from "./style"
@@ -11,7 +11,7 @@ import { Button } from "../../Button"
 import { GrClose } from "react-icons/gr"
 
 export const EditContactModal = () => {
-    const { editContactModal, setEditContactModal, contactToUpdate, setContactToUpdate } = useContext(ServiceContext)
+    const { editContactModal, setEditContactModal, contactToUpdate } = useContext(ServiceContext)
     const { updateContact } = useContext(UserContext)
 
     const {
@@ -40,24 +40,28 @@ export const EditContactModal = () => {
         }
         if (telefones[0] === "") {
             telefones = contactToUpdate.telefones
-        } 
-        const contactUpdateBody = {name, emails, telefones}
+        }
+        const contactUpdateBody = { name, emails, telefones }
         updateContact(contactUpdateBody, contactToUpdate.id)
+    }
+
+    const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
     }
 
     return (
         <>
             {editContactModal && (
-                <StyledEditContactModal>
-                    <section className="modal-card">
+                <StyledEditContactModal onClick={() => setEditContactModal(false)}>
+                    <section className="modal-card" onClick={handleModalClick}>
                         <div className="modal-header">
                             <h2>Editar contato</h2>
-                            <GrClose onClick={() => setEditContactModal(false) } className="close-btn"/>
+                            <GrClose onClick={() => setEditContactModal(false)} className="close-btn" />
                         </div>
                         <form onSubmit={handleSubmit(updateContactAjust)} noValidate>
                             <Input
                                 id="new-name"
-                                labelName="Editar nove"
+                                labelName="Editar nome"
                                 type="text"
                                 linkForm={register("name")}
                                 error={errors.name?.message}

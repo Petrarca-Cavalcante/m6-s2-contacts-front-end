@@ -2,20 +2,22 @@ import styled from "styled-components";
 
 export const StyledHome = styled.main`
   min-height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   background-color: var(--color-neutral-white);
   color: var(--color-neutral-black);
-  
+
   #FiLogOut {
     width: 35px;
     height: 20px;
   }
 
   .logout-container{
+    position: relative;
+    left: 40px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -24,6 +26,9 @@ export const StyledHome = styled.main`
     padding-top: 5px;
   }
   .user-container {
+    z-index: 0;
+    position: relative;
+    left: 18px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,11 +37,10 @@ export const StyledHome = styled.main`
   .user-card {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10px;
-    padding-left: 60px;
     height: 100px;
-    width: 250px;
+    min-width: 250px;
     margin-top: 10vh;
     margin-bottom: 15px;
     background-color: var(--color-blue-5);
@@ -98,5 +102,18 @@ export const StyledHome = styled.main`
     overflow: hidden;
     max-width: 80px;
     word-break: break-all;
+  }
+    
+  @media(min-width: 600px){
+    .home-card {
+      width: 400px;
+    }
+    .user-card{
+      justify-content: center;
+    }
+    .logout-container {
+      position: relative;
+      left: 115px;
+    }
   }
 `

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { MouseEvent, useContext } from "react"
 import { StyledAddContactModal } from "./style"
 import { iNewContact } from "./type"
 import { ServiceContext } from "../../../context/ServiceContext"
@@ -11,7 +11,7 @@ import { UserContext } from "../../../context/UserContext"
 
 
 export const AddContactModal = () => {
-    const { addContactModal, setAddContactModal, viewContactModal, setViewContactModal } = useContext(ServiceContext)
+    const { addContactModal, setAddContactModal} = useContext(ServiceContext)
     const { onSubmitNewContact } = useContext(UserContext)
 
     const {
@@ -28,11 +28,15 @@ export const AddContactModal = () => {
         },
     });
 
+    const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+    }
+
     return (
         <>
             {addContactModal && (
-                <StyledAddContactModal>
-                    <div className="modal-card">
+                <StyledAddContactModal onClick={() => setAddContactModal(false)}>
+                    <section className="modal-card" onClick={handleModalClick}>
                         <div className="modal-header">
                             <button onClick={() => setAddContactModal(false)}>X</button>
                         </div>
@@ -63,7 +67,7 @@ export const AddContactModal = () => {
                             />
                             <Button style="blueDark" type="submit">Salvar</Button>
                         </form>
-                    </div>
+                    </section>
                 </StyledAddContactModal>
             )}
         </>

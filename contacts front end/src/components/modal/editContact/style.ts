@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 export const StyledEditContactModal = styled.div`
+z-index: 2;
 position: absolute;
 display: flex;
 flex-direction: column;
@@ -11,7 +12,6 @@ min-height: 100vh;
 background-color: var(--color-black-transparent);
 
 .modal-card {
-    z-index: 1;
     width: 300px;
     min-height: 415px;
     padding: 0 10px;
@@ -39,7 +39,8 @@ background-color: var(--color-black-transparent);
             height: 20px;
             position: relative;
             left: 35px;
-            bottom: 20px;
+            bottom: 15px;
+
         }
     }
     form  {
@@ -49,4 +50,17 @@ background-color: var(--color-black-transparent);
             margin-top: 10px;
         }
     }
+@media(min-width: 600px){
+    .modal-card{
+        width: 400px;
+    }
+    .modal-header{
+        .close-btn {
+        left: 80px;
+        }
+    }
+    form {
+        width: 90%;
+    }
+}
 `

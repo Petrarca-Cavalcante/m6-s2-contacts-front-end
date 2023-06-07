@@ -5,6 +5,8 @@ import { UserContext } from "../../../context/UserContext"
 import { GrClose } from "react-icons/gr"
 import { GoPencil } from "react-icons/go"
 import { SlTrash } from "react-icons/sl"
+import { MouseEvent } from "react"
+
 
 export const ViewContactModal = () => {
     const { viewContactModal, setViewContactModal, setEditContactModal, setContactToUpdate } = useContext(ServiceContext)
@@ -19,7 +21,7 @@ export const ViewContactModal = () => {
 
     const dataFormatada = `${dia}/${mes}/${ano}`;
 
-    const handleModalClick = (event: any) => {
+    const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
     }
 

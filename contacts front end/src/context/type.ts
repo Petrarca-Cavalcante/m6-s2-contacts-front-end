@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react"
 import { iNewContact } from "../components/modal/addContact/type"
 import { iUpdateContactFormat } from "../components/modal/editContact/type"
+import { iRegister } from "../pages/register"
 
 export interface iPropsUserProvider {
     children: ReactNode
@@ -15,6 +16,7 @@ export interface iUserContext {
     setLoadingButton: React.Dispatch<React.SetStateAction<boolean>>,
     onSubmitLogin: (data: iLoginSubmit) => void
     onSubmitNewContact: (data: iNewContact) => void
+    createAccount: (data: iRegister) => void
     userProfile: iUserProfile
     setUserProfile: React.Dispatch<React.SetStateAction<iUserProfile>>
     requestUser: () => void
@@ -24,7 +26,7 @@ export interface iUserContext {
     requestContacts: () => void
     contacts: iContact[]
     setContacts: React.Dispatch<React.SetStateAction<iContact[]>>
-    updateContact: (data: iUpdateContactFormat, id:string) => void
+    updateContact: (data: iUpdateContactFormat, id: string) => void
 }
 
 export interface iContact {
