@@ -42,8 +42,13 @@ export const UserProvider = ({ children }: iPropsUserProvider) => {
       toast.success(`Usuário ${response.data.name} criado com sucesso`)
       navigate("/login")
     } catch (error) {
-      
-      toast.error("Houve um erro ao registrar seu usuário!")
+      console.log(error)
+      console.log(error.response.data.message)
+      if (error.response.data.message === "User aready exists") {
+        toast.error("Este usuário já existe!")
+      } else {
+        toast.error(`${error.response.data.message}`)
+      } 
     }
   }
 
