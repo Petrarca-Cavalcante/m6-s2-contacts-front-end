@@ -100,7 +100,7 @@ export const StyledHome = styled.main`
 
   li p {
     overflow: hidden;
-    max-width: 80px;
+    max-width: 270px;
     word-break: break-all;
   }
     
